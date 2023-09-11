@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
@@ -20,8 +22,10 @@ internal class WorkerService : IHostedService
     {
         using var scope = _scopeFactory.CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<BloggingContext>();
-        context.Blogs.Add(new Blog { Url = "https://a.b.c.d", CreatedBy = "", });
+        context.Blogs.Add(new Blog { Url = $"https://{Guid.NewGuid:n}", });
+        
         await context.SaveChangesAsync();
+        var model = context.GetService<IRelationalModel>();
     }
 
     public async Task StopAsync(CancellationToken cancellationToken)

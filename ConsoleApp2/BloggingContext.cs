@@ -1,7 +1,5 @@
-﻿using ConsoleApp2.Audits;
+﻿using ConsoleApp2.HiLo;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore.ValueGeneration;
 
 
 namespace ConsoleApp2;
@@ -21,48 +19,20 @@ public class BloggingContext : DbContext
     {
         options
             .EnableSensitiveDataLogging()
-            .UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=test-db;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;MultipleActiveResultSets=True")
+            .UseSqlite($"Data Source=c:\\temp\\blogging.db")
+            //.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=blogging;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;MultipleActiveResultSets=True")
+            .UseTabularHiLo()
             ;
         
     }
 
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-
         base.OnModelCreating(modelBuilder);
-        modelBuilder.Entity<Blog>().Property(b => b.CreatedBy)
-            .HasValueGenerator<TestValueGenerator>() 
-            .ValueGeneratedOnAddOrUpdate();
 
-        //modelBuilder.Entity<Blog>().HasAuditProperties();
-        //modelBuilder.Entity<Post>().HasAuditProperties();   
+
+        modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
 
     }
-}
-public class TestValueGenerator : ValueGenerator<string>
-{
-    public TestValueGenerator() : base() 
-    { 
-        Console.WriteLine($"constructed {nameof(TestValueGenerator)}");
-    }
-    public override bool GeneratesTemporaryValues
-    {
-        get
-        {
-            return false;
-        }
-    }
-
-    public override string Next(EntityEntry entry)
-    {
-        return "Example";
-    }
-}
-
-public class ExampleCurrentUserAccessor : ICurrentUserValueAccessor<string>
-{
-    public ExampleCurrentUserAccessor() {
-        Console.WriteLine("Constructed");
-    }
-    public string GetUserValue() => "Example";
 }
