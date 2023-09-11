@@ -23,7 +23,7 @@ public class BloggingContext : DbContext
             //.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=blogging;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;MultipleActiveResultSets=True")
             .UseTabularHiLo()
             ;
-        
+
     }
 
 

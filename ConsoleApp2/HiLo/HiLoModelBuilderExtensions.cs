@@ -7,10 +7,10 @@ public static class HiLoModelBuilderExtensions
 {
     public static void UseTabularHiLo(this PropertyBuilder prop, string sequenceName = null, long startsAt = 1L, long incrementBy = 10L)
     {
-        
+
         var rootType = prop.Metadata.DeclaringEntityType.GetRootType();
         rootType.AddAnnotation(AnnotationNames.UseHiLo, true);
-        if(sequenceName == null)
+        if (sequenceName == null)
         {
             sequenceName = rootType.ClrType?.Name ?? rootType.Name;
         }

@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
 
 
@@ -45,7 +44,7 @@ public class TabularHiLoValueGenerator<TValue> : ValueGenerator<TValue>
     public override ValueTask<TValue> NextAsync(
         EntityEntry entry,
         CancellationToken cancellationToken = default)
-        => _generatorState.NextAsync<TValue>((ct)=>GetSequenceAccessor(entry.Context).NextAsync(ct), cancellationToken);
+        => _generatorState.NextAsync<TValue>((ct) => GetSequenceAccessor(entry.Context).NextAsync(ct), cancellationToken);
 
     /// <summary>
     ///     Gets the low value for the next block of values to be used.
@@ -60,5 +59,5 @@ public class TabularHiLoValueGenerator<TValue> : ValueGenerator<TValue>
     /// <returns>The low value for the next block of values to be used.</returns>
     /// <exception cref="OperationCanceledException">If the <see cref="CancellationToken" /> is canceled.</exception>
     protected virtual Task<long> GetNewLowValueAsync(CancellationToken cancellationToken = default) => throw new NotImplementedException("call the version with the context");
- 
+
 }

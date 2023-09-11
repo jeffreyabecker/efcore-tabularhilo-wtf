@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.SqlServer.ValueGeneration.Internal;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Update;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
@@ -43,7 +42,7 @@ public class TabularHiLoValueGeneratorFactory : ITabularHiLoValueGeneratorFactor
         IRelationalConnection connection,
         IRelationalCommandDiagnosticsLogger commandLogger)
     {
-      
+
         if (type == typeof(long))
         {
             return new TabularHiLoValueGenerator<long>(generatorState);

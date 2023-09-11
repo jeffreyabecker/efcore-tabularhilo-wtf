@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 
 
 namespace ConsoleApp2.HiLo.Metadata.Conventions;
-public class SequenceTableConvention :  IModelFinalizingConvention
+public class SequenceTableConvention : IModelFinalizingConvention
 {
     public void ProcessModelFinalizing(IConventionModelBuilder modelBuilder, IConventionContext<IConventionModelBuilder> context)
     {
         var entityName = typeof(SequenceTable).FullName;
         var sequencesTableName = (string?)modelBuilder.Metadata.FindAnnotation(AnnotationNames.SequenceTableName)?.Value ?? SequenceTable.DefaultTableName;
-        if(!modelBuilder.Metadata.GetEntityTypes().Any(e=>e.Name == entityName))
+        if (!modelBuilder.Metadata.GetEntityTypes().Any(e => e.Name == entityName))
         {
             var sequencesEntity = modelBuilder.Entity(entityName);
 
@@ -45,13 +45,13 @@ public class SequenceTableConvention :  IModelFinalizingConvention
         {
             SequenceName = sequenceName?.Value as string ?? type.Name,
             CurrentValue = (long?)startsAt?.Value ?? 1L,
-            IncrementBy = (long?)incrementBy?.Value  ?? 1L,
+            IncrementBy = (long?)incrementBy?.Value ?? 1L,
         };
 
     }
 
     private bool HasHiLoSequence(IConventionEntityType type)
     {
-        return type.Name != typeof(SequenceTable).FullName && (( (bool?)type.FindAnnotation(AnnotationNames.UseHiLo)?.Value ?? false));
+        return type.Name != typeof(SequenceTable).FullName && (((bool?)type.FindAnnotation(AnnotationNames.UseHiLo)?.Value ?? false));
     }
 }

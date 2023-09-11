@@ -21,11 +21,11 @@ public static class DbContextOptionsExtensions
         return optionsBuilder;
     }
 }
-public class TabularHiLoDbContextOptionsBuilder 
+public class TabularHiLoDbContextOptionsBuilder
 {
     private readonly TabularHiLoOptionsExtension _extension;
 
-    public TabularHiLoDbContextOptionsBuilder(TabularHiLoOptionsExtension optionsBuilder) 
+    public TabularHiLoDbContextOptionsBuilder(TabularHiLoOptionsExtension optionsBuilder)
     {
         _extension = optionsBuilder;
     }

@@ -1,10 +1,6 @@
-﻿using ConsoleApp2.HiLo.Metadata;
-using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
-using Microsoft.EntityFrameworkCore.Diagnostics;
+﻿using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.EntityFrameworkCore.Update;
 
 namespace ConsoleApp2.HiLo.ValueGeneration;
 
@@ -26,7 +22,7 @@ public class TabularSequenceAccessor : ITabularSequenceAccessor
         _commandLogger = commandLogger;
     }
 
- 
+
     public long Next()
     {
         throw new NotImplementedException();

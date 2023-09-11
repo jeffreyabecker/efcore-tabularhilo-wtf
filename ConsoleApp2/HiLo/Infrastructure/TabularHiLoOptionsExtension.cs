@@ -8,8 +8,8 @@ public class TabularHiLoOptionsExtension : IDbContextOptionsExtension
     private DbContextOptionsExtensionInfo? _info;
 
     public TabularHiLoOptionsExtension() : base() { }
- 
- 
+
+
 
     public void ApplyServices(IServiceCollection services)
     {
@@ -26,7 +26,7 @@ public class TabularHiLoOptionsExtension : IDbContextOptionsExtension
         throw new NotImplementedException();
     }
 
-    public  DbContextOptionsExtensionInfo Info => _info ??= new ExtensionInfo(this);
+    public DbContextOptionsExtensionInfo Info => _info ??= new ExtensionInfo(this);
 
     private sealed class ExtensionInfo : DbContextOptionsExtensionInfo
     {
