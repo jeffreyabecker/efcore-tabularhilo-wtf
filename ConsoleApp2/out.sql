@@ -1,3 +1,6 @@
+Build started...
+Build succeeded.
+The Entity Framework tools version '7.0.9' is older than that of the runtime '7.0.10'. Update the tools for the latest features and bug fixes. See https://aka.ms/AAc1fbw for more information.
 CREATE TABLE IF NOT EXISTS "__EFCoreHiLoSequences" (
     "SequenceName" TEXT NOT NULL CONSTRAINT "PK___EFCoreHiLoSequences" PRIMARY KEY,
     "CurrentValue" INTEGER NOT NULL,
@@ -37,7 +40,7 @@ VALUES ('Post', 1, 10);
 CREATE INDEX "IX_Posts_BlogId" ON "Posts" ("BlogId");
 
 INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
-VALUES ('20230911162127_InitialCreate', '7.0.10');
+VALUES ('20230911163442_InitialCreate', '7.0.10');
 
 COMMIT;
 
