@@ -6,7 +6,11 @@ public class HiLoConventionSetPlugin : IConventionSetPlugin
 {
     public ConventionSet ModifyConventions(ConventionSet conventionSet)
     {
-        conventionSet.Add(new SequenceTableConvention());
+        if(!conventionSet.ModelFinalizingConventions.Any(c=>c is SequenceTableConvention))
+        {
+            conventionSet.Add(new SequenceTableConvention());
+        }
+        
         return conventionSet;
     }
 }
